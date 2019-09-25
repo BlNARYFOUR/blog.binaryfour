@@ -13,7 +13,7 @@
     <section class="mt-2 pb-5 container" *ngIf="blog != null">
 
         <div class="row">
-            <div class="col-lg-9 column mb-5 article">
+            <div class="col-lg-9 column mb-5 article" [ngClass]="{'hide-on-init' : animate}" animateOnScroll animationName="animated fadeInLeft">
                 <nav class="mb-4"><a routerLink="/">blog</a> / <a routerLink="/blog/{{blog['id']}}">{{blog['title']}}</a></nav>
                 <img class="img-fluid w-100 rounded" src="{{apiUrl}}blogs/images/{{blog['wallpaper']}}" [alt]="blog['wallpaper']" [title]="blog['title']"/>
 
@@ -34,8 +34,8 @@
                 <hr />
             </div>
 
-            <aside class="col-lg-3 column">
-                <h2 class="mb-4">Other articles</h2>
+            <aside class="col-lg-3 column" [ngClass]="{'hide-on-init' : animate}" animateOnScroll animationName="animated fadeInRight">
+                <h2 class="mb-4">Latest articles</h2>
 
                 <ul class="list-unstyled">
                     <li class="mt-4" *ngFor="let b of blogs">

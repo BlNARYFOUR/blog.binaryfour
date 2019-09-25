@@ -14,17 +14,28 @@ export class IndexComponent implements OnInit {
     apiUrl: string = environment.apiUrl;
     blogs: any;
 
+    pageSize: number = 6;
+    currentPage: number = 1;
+    totalItems: number = 18;
+
   constructor(private _blogService: BlogService) { }
 
   ngOnInit() {
-      this.showBlogs();
+      this._blogService.enablePostAnimation();
+      this.showBlogs(this.currentPage);
   }
 
-  showBlogs() {
-      this._blogService.getBlogs().subscribe((data) => {
+  showBlogs(page) {
+      this._blogService.getBlogs(page).subscribe((data) => {
           this.blogs = data['data'];
-          console.log(this.blogs)
+          this.totalItems = data['meta']['total'];
+          console.log(data);
       });
+  }
+
+  pageChanged($page) {
+      this.currentPage = $page;
+      this.showBlogs($page);
   }
 
 }

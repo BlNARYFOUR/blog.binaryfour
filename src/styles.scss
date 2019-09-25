@@ -10,7 +10,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  //scroll-behavior: smooth;
 }
 
 header {
@@ -28,6 +28,65 @@ nav {
 
 nav > a {
   color: #35568c;
+}
+
+.ngx-pagination {
+  text-align: center;
+  padding: 0;
+
+  a {
+    background: #fff;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    padding: 9px 15px !important;
+    text-decoration: none;
+    border: 3px solid #edeff7;
+    font-size: 13px;
+    color: #000;
+    border-radius: 30px !important;
+    height: 41px;
+    line-height: 1.2;
+
+    &:hover {
+      background: #85b6fc30 !important;
+    }
+  }
+
+  .current {
+    background-color: #003557e0 !important;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    padding: 9px 15px !important;
+    text-decoration: none;
+    border: 3px solid #edeff7;
+    color: #000;
+    border-radius: 30px;
+    height: 41px;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .disabled {
+    padding: 9px 15px !important;
+    cursor: default;
+    background: #edeff7;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    text-decoration: none;
+    border: 3px solid #edeff7;
+    font-size: 13px;
+    color: #000;
+    border-radius: 30px;
+    height: 41px;
+    line-height: 1.2;
+  }
+
+  .disabled:hover {
+    background: #edeff7 !important;
+  }
 }
 
 .bg-darker {

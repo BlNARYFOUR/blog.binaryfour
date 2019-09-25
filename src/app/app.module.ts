@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { BlogSummaryComponent } from './pages/index/components/blogSummary/blog-summary/blog-summary.component';
 import {AnimateOnScrollModule} from "ng2-animate-on-scroll";
 import { BlogComponent } from './pages/blog/blog.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BlogComponent } from './pages/blog/blog.component';
     BrowserModule,
     AppRoutingModule,
       HttpClientModule,
-      AnimateOnScrollModule.forRoot()
+      AnimateOnScrollModule.forRoot(),
+      NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

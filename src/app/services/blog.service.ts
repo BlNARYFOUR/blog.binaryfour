@@ -1,22 +1,41 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 
 @Injectable()
 export class BlogService {
 
-  constructor(private _http: HttpClient) {
+    doAnimation: boolean = false;
 
-  }
+    constructor(private _http: HttpClient) {
 
-  blogsUrl = environment.apiUrl + 'blogs';
-  blogUrl = environment.apiUrl + 'blogs/';
+    }
 
-  getBlogs() {
-      return this._http.get(this.blogsUrl);
-  }
+    blogsUrl = environment.apiUrl + 'blogs';
+    latestBlogsUrl = environment.apiUrl + 'blogs/latest/';
+    blogUrl = environment.apiUrl + 'blogs/';
 
-  getBlog(id: number) {
-      return this._http.get(this.blogUrl + id);
-  }
+    getBlogs(page: number) {
+        return this._http.get(this.blogsUrl + '?page=' + page);
+    }
+
+    getLatestBlogs(skipId: number) {
+        return this._http.get(this.latestBlogsUrl + skipId);
+    }
+
+    getBlog(id: number) {
+        return this._http.get(this.blogUrl + id);
+    }
+
+    enablePostAnimation() {
+        this.doAnimation = true;
+    }
+
+    disablePostAnimation() {
+        this.doAnimation = false;
+    }
+
+    doPostAnimation() {
+        return this.doAnimation;
+    }
 }

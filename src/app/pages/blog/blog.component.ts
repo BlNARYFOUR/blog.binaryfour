@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {BlogService} from "../../services/blog.service";
 import {environment} from "../../../environments/environment";
+import {animate} from "@angular/animations";
 
 @Component({
   selector: 'app-blog',
@@ -14,6 +15,7 @@ export class BlogComponent implements OnInit {
     apiUrl: string = environment.apiUrl;
     blog: any;
     blogs: any;
+    animate: boolean;
 
   constructor(
       private _route: ActivatedRoute,
@@ -21,12 +23,14 @@ export class BlogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+      this.animate = this._blogService.doPostAnimation();
+      this._blogService.disablePostAnimation();
+
       this._route.paramMap.subscribe(params => {
-          console.log(params);
           let id = parseInt(params.get('id'));
 
           this.showBlog(id);
-          this.showOtherBlogs(id);
+          this.showOtherLatestBlogs(id);
       });
   }
 
@@ -36,17 +40,9 @@ export class BlogComponent implements OnInit {
         });
     }
 
-    static checkId(skipId: number, id: number) {
-      return skipId != id;
-    }
-
-    showOtherBlogs(skipId: number) {
-        this._blogService.getBlogs().subscribe((data) => {
-            let buf = data['data'];
-
-            this.blogs = buf.filter((blog) => {
-                return BlogComponent.checkId(skipId, blog['id']);
-            });
+    showOtherLatestBlogs(skipId: number) {
+        this._blogService.getLatestBlogs(skipId).subscribe((data) => {
+            this.blogs = data['data'];
         });
     }
 

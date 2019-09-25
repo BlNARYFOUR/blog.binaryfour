@@ -13,9 +13,9 @@
     <section class="pb-3 container">
         <nav class="mb-4"><a routerLink="/">blog</a> /</nav>
         <ul class="row justify-content-center list-unstyled">
-            <li class="col-xl-4 col-lg-6 col-md-6 p-3" [routerLink]="['/blog',blog['id']]" *ngFor="let blog of blogs">
+            <li class="col-xl-4 col-lg-6 col-md-6 p-3" routerLink="/blog/{{blog['id']}}" *ngFor="let blog of blogs | paginate: { id: 'blogs', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems }">
                 <!--suppress HtmlUnknownAttribute -->
-                <figure class="m-0 height-auto rounded position-relative reveal hide-on-init" animateOnScroll animationName="animated fadeInUp">
+                <figure class="m-0 height-auto rounded position-relative reveal hide-on-init" animateOnScroll animationName="animated fadeIn">
                     <img class="img-fluid" src="{{apiUrl}}blogs/images/{{blog['wallpaper']}}" [alt]="blog['wallpaper']" [title]="blog['title']"/>
                     <div class="location-wrapper">
                         <span class="location text position-absolute">{{blog['location']}}</span>
@@ -43,5 +43,19 @@
 
             </li>
         </ul>
+
+        <pagination-controls  id="blogs"
+                              (pageChange)="pageChanged($event)"
+                              maxSize="5"
+                              directionLinks="true"
+                              autoHide="true"
+                              responsive="true"
+                              previousLabel="Previous"
+                              nextLabel="Next"
+                              screenReaderPaginationLabel="Pagination"
+                              screenReaderPageLabel="page"
+                              screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+
     </section>
 </main>
