@@ -58,13 +58,11 @@
                 <h2 class="mb-4">Latest articles</h2>
 
                 <ul class="list-unstyled">
-                    <li class="mt-4" *ngFor="let b of blogs">
-                        <div class="hide-on-init" animateOnScroll animationName="animated fadeIn">
-                            <img routerLink="/blog/{{b['id']}}" class="img-fluid rounded" src="{{apiUrl}}blogs/images/{{b['wallpaper']}}" [alt]="b['wallpaper']" [title]="b['title']"/>
-                            <div>
-                                <h3 routerLink="/blog/{{b['id']}}">{{b['title']}}</h3>
-                                <span>{{b['date'].split(' ')[0]}}</span>
-                            </div>
+                    <li class="mt-4 hide-on-init" animateOnScroll animationName="animated fadeIn" *ngFor="let b of blogs">
+                        <img routerLink="/blog/{{b['id']}}" class="img-fluid rounded" src="{{apiUrl}}blogs/images/{{b['wallpaper']}}" [alt]="b['wallpaper']" [title]="b['title']"/>
+                        <div>
+                            <h3 routerLink="/blog/{{b['id']}}">{{b['title']}}</h3>
+                            <span>{{b['date'].split(' ')[0]}}</span>
                         </div>
                     </li>
                 </ul>
