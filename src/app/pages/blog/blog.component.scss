@@ -1,0 +1,95 @@
+.article {
+  > .caption {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    line-height: 40px;
+    font-size: 13px;
+    color: #a7a7a7;
+
+    > .icon {
+      vertical-align: middle;
+      display: inline-block;
+      background: rgb(0, 53, 87) no-repeat url('../../../assets/media/logo_03.png') center center;
+      background-size: 30px;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+    }
+
+    > div {
+      width: calc(100% - 135px);
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
+      > .extra {
+        display: inline-block;
+        padding-left: 30px;
+        white-space: nowrap;
+      }
+    }
+
+    > .name {
+      vertical-align: middle;
+      padding-left: 15px;
+    }
+  }
+
+  > .body {
+    font-size: 16px;
+    color: #666;
+    line-height: 29px;
+
+    > strong {
+      font-weight: 700;
+    }
+
+    > h2 {
+      font-size: 20px;
+      color: rgb(0, 53, 87);
+      padding-bottom: 10px;
+    }
+  }
+}
+
+aside {
+  > h2 {
+    float: left;
+    width: 100%;
+    margin: 0;
+    font-size: 15px;
+    color: #202020;
+  }
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+    width: 74px;
+    cursor: pointer;
+  }
+
+  div {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 15px;
+    width: calc(100% - 15px - 74px);
+
+    > h3 {
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: normal;
+      color: #202020;
+      margin-bottom: 0;
+    }
+
+    h3:hover {
+      color: lightslategrey;
+    }
+
+    > span {
+      width: 100%;
+      font-size: 13px;
+      color: #888;
+      margin-top: 5px;
+    }
+  }
+}

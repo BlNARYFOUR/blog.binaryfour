@@ -1,0 +1,47 @@
+<header>
+    <div class="jumbotron pb-5 rounded-0 text-center bg-darker">
+        <nav class="pb-5">
+            <img class="logo float-left" src="../../../assets/media/logo_03.png" alt="Logo" name="Logo" />
+        </nav>
+
+        <h1 class="mb-2 h2 font-weight-bold text-center text-white">Latest blog posts</h1>
+    </div>
+</header>
+
+<main id="main" class="container-fluid mt-5 pb-5 mb-5">
+
+    <section class="pb-3 container">
+        <nav class="mb-4"><a routerLink="/">blog</a> /</nav>
+        <ul class="row justify-content-center list-unstyled">
+            <li class="col-xl-4 col-lg-6 col-md-6 p-3" [routerLink]="['/blog',blog['id']]" *ngFor="let blog of blogs">
+                <!--suppress HtmlUnknownAttribute -->
+                <figure class="m-0 height-auto rounded position-relative reveal hide-on-init" animateOnScroll animationName="animated fadeInUp">
+                    <img class="img-fluid" src="{{apiUrl}}images/{{blog['wallpaper']}}" [alt]="blog['wallpaper']" [title]="blog['title']"/>
+                    <div class="location-wrapper">
+                        <span class="location text position-absolute">{{blog['location']}}</span>
+                        <span class="location position-absolute"></span>
+                    </div>
+                    <div class="duration-wrapper">
+                        <span class="duration text position-absolute">{{blog['duration']}}h</span>
+                        <span class="duration position-absolute"></span>
+                    </div>
+                    <figcaption class="container bg-dark position-absolute fixed-bottom vertical-middle">
+                        <div class="width-auto">
+                            <h2 class="lead pt-1 pr-1 mb-0 width-auto text-white">{{blog['title']}}</h2>
+                            <h3 class="lead pr-1 h3-small text-primary">{{blog['date'].split(' ')[0]}}</h3>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <!--<div>-->
+                    <!--<h2>{{blog['title']}}</h2>-->
+                    <!--<img class="img-fluid" src="{{apiUrl}}images/{{blog['wallpaper']}}"/>-->
+                    <!--<span>{{blog['date']}}</span>-->
+                    <!--<span>{{blog['location']}}</span>-->
+                    <!--<span>{{blog['duration']}}</span>-->
+                <!--</div>-->
+
+            </li>
+        </ul>
+    </section>
+</main>

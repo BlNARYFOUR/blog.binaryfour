@@ -1,0 +1,52 @@
+<header>
+    <div class="jumbotron pb-5 rounded-0 text-center bg-darker">
+        <nav class="pb-5">
+            <img class="logo float-left" src="../../../assets/media/logo_03.png" alt="Logo" name="Logo" />
+        </nav>
+
+        <h1 class="mb-2 h2 font-weight-bold text-center text-white hide-on-init" animateOnScroll animationName="animated fadeIn">{{blog == null ? '&nbsp;' : blog['title']}}</h1>
+    </div>
+</header>
+
+<main id="main" class="mt-5 pb-5 mb-5">
+
+    <section class="mt-2 pb-5 container" *ngIf="blog != null">
+
+        <div class="row">
+            <div class="col-lg-9 column mb-5 article">
+                <nav class="mb-4"><a routerLink="/">blog</a> / <a routerLink="/blog/{{blog['id']}}">{{blog['title']}}</a></nav>
+                <img class="img-fluid w-100 rounded" src="{{apiUrl}}images/{{blog['wallpaper']}}" [alt]="blog['wallpaper']" [title]="blog['title']"/>
+
+                <div class="caption">
+                    <span class="icon"></span><span class="name">Brend Lambert</span>
+                    <div>
+                        <span class="extra">{{blog['date'].split(' ')[0]}}</span>
+                        <span class="extra">{{blog['location']}}</span>
+                        <span class="extra">{{blog['duration']}}h</span>
+                    </div>
+                </div>
+
+                <div class="body">
+                    <h2>{{blog['title']}}</h2>
+
+                    {{blog['body']}}
+                </div>
+                <hr />
+            </div>
+
+            <aside class="col-lg-3 column">
+                <h2 class="mb-4">Other articles</h2>
+
+                <ul class="list-unstyled">
+                    <li class="mt-4" *ngFor="let b of blogs">
+                        <img routerLink="/blog/{{b['id']}}" class="img-fluid rounded" src="{{apiUrl}}images/{{b['wallpaper']}}" [alt]="b['wallpaper']" [title]="b['title']"/>
+                        <div>
+                            <h3 routerLink="/blog/{{b['id']}}">{{b['title']}}</h3>
+                            <span>{{b['date'].split(' ')[0]}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </section>
+</main>

@@ -1,1 +1,397 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "assets/css/Animate.css";
+@import '~bootstrap/dist/css/bootstrap-reboot.min.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+@font-face {
+  font-family: "Lapsus Pro";
+  src: url('./assets/fonts/LapsusPro-Bold.otf');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+header {
+  background: url('./assets/media/banner.jpg') no-repeat center top;
+  background-size: cover;
+}
+
+header > div {
+  margin-bottom: 0 !important;
+}
+
+nav {
+  font-size: 1.25rem;
+}
+
+nav > a {
+  color: #35568c;
+}
+
+.bg-darker {
+  background-color: rgba(10, 0, 40, 0.55) !important;
+}
+
+.width-auto {
+  width: 100%;
+}
+
+.height-auto {
+  height: 100%;
+}
+
+.bg-darkest {
+  background-color: rgba(10, 0, 40, 0.85) !important;
+}
+
+footer {
+
+  cursor: default;
+}
+
+.mt-9 {
+  margin-top: 9rem !important;
+}
+
+.blix-logo {
+  color: #B7173F;
+  font-family: "Lapsus Pro", sans-serif;
+  font-size: 5.5rem;
+  width: 100%;
+  text-shadow: 5px 5px #5A0017;
+}
+
+footer > ul > li > a {
+  color: white;
+  font-size: 1.125rem;
+  padding: 0.85rem;
+  margin: 0 0.75rem;
+  border: medium solid #35568c;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.25s;
+  -moz-transition: 0.25s;
+}
+
+footer > ul > li > a:hover {
+  color: rgb(20, 0, 100) !important;
+  background-color: white;
+  border-color: white;
+  text-decoration: none;
+}
+
+.bg-dark {
+  background: #42386bc9 !important;
+}
+
+.location, .duration {
+  display: block;
+  background: white no-repeat url('./assets/media/location.png') center center;
+  background-size: 30px;
+  width: 40px;
+  height: 40px;
+  border: 2px black solid;
+  border-radius: 20px;
+  top: 5px;
+  left: 5px;
+}
+
+.duration {
+  top: 45px;
+  background: white no-repeat url('./assets/media/duration.png') center center;
+  background-size: 25px;
+}
+
+.animated {
+  opacity: 1 !important;
+}
+.hide-on-init {
+  opacity: 0;
+  transition: opacity 0s!important;
+}
+
+.location.text, .duration.text {
+  width: 40px;
+  padding-left: 0;
+  padding-right: 0;
+  line-height: 32px;
+  background: rgb(250, 250, 250);
+  text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.5s;
+  -moz-transition: all 0.5s;
+}
+
+.location-wrapper:hover .location.text, .duration-wrapper:hover .duration.text {
+  width: auto;
+  padding-left: 45px;
+  padding-right: 10px;
+}
+
+
+
+li > figure {
+  cursor: pointer;
+}
+
+.logo {
+  width: 45px;
+  display: block;
+  margin-top: -3px;
+}
+
+.logo.big {
+  width: 80px;
+  margin-top: 0;
+}
+
+.logo-centered {
+  margin-top: 0 !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.btn-outline-light {
+  color: white !important;
+  border-color: white !important;
+  border-radius: 1.5rem;
+  border-width: 2px;
+  font-weight: bold;
+}
+
+.btn-outline-light:hover {
+  background-color: white;
+  color: rgb(20, 0, 100) !important;
+}
+
+.text-light {
+  color: #cce5ff !important;
+}
+
+.text-small {
+  font-size: 1rem;
+}
+
+.vertical-middle {
+  display: flex;
+  align-items: center;
+}
+
+@keyframes bounce {
+  0%      {transform: translateY(0rem) rotate(45deg);}
+  20%     {transform: translateY(0rem) rotate(45deg);}
+  23%     {transform: translateY(-1rem) rotate(45deg);}
+  26%     {transform: translateY(0rem) rotate(45deg);}
+  27.5%   {transform: translateY(-0.5rem) rotate(45deg);}
+  29%     {transform: translateY(0rem) rotate(45deg);}
+  100%    {transform: translateY(0rem) rotate(45deg);}
+}
+
+.arrow-down {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  transform: rotate(45deg);
+  border-bottom: 0.3rem solid #35568c;
+  border-right: 0.3rem solid #35568c;
+  border-radius: 0.15rem;
+  animation-name: bounce;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+.arrow-light {
+  border-bottom: 0.3rem solid #6596dc;
+  border-right: 0.3rem solid #6596dc;
+}
+
+.text-primary {
+  color: #85b6fc !important;
+}
+
+main {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.bg-dark-blue {
+  background-color: rgb(0, 53, 87);
+}
+
+.container-overlap {
+  margin-top: -6rem !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.container-overlap > div {
+  margin-right: 1rem !important;
+  margin-left: 1rem !important;
+  border-radius: 20px;
+  box-shadow: 0 0 0 3px rgba(0, 53, 87, 0.25);
+}
+
+.container-overlapped {
+  padding-bottom: 6rem !important;
+}
+
+.container-overlap > div > section:nth-of-type(2):nth-last-child(2)  {
+  border: solid 2px rgba(20, 0, 100, 0.1);
+  border-top: none;
+  border-bottom: none;
+}
+
+.icon-big {
+  font-size: 2.5rem;
+  color: rgba(53, 86, 140, 0.75);
+}
+
+.icon-circle {
+  width: 5rem;
+  height: 5rem;
+  line-height: 5.75rem;
+  background-color: rgba(53, 86, 140, 0.075);
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+}
+
+.blue {
+  color: #35568c;
+}
+
+.btn-outline-light.blue {
+  border-color: #35568c !important;
+}
+
+.btn-outline-light.blue:hover {
+  background-color: #35568c !important;
+  color: white !important;
+}
+
+
+.rounded {
+  border-radius: 20px !important;
+  overflow: hidden;
+  //box-shadow: 4px 2px 5px 1px rgba(0, 53, 87, 0.25);
+}
+
+img.rounded {
+  border-radius: 10px !important;
+}
+
+img {
+  height: auto;
+}
+
+.hover {
+  opacity: 0;
+  transition: 0.25s;
+  -moz-transition: 0.25s;
+}
+
+.h3-small {
+  font-size: 1rem;
+}
+
+.hover:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .container-overlap > div > section {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    flex: inherit;
+  }
+
+  .container-overlap > div > section:nth-of-type(2):nth-last-child(2)  {
+    border: solid thin rgba(20, 0, 100, 0.1);
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 1000px) {
+  header > div:first-of-type {
+    padding-top: 1rem !important;
+  }
+
+  header div.pb-5 {
+    padding-bottom: 2rem !important;
+  }
+
+  header div nav.mb-5 {
+    margin-bottom: 2.5rem !important;
+  }
+
+  header div h1.pt-4 {
+    padding-top: 0 !important;
+  }
+
+  header div h1.mb-4 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  header div h2.pb-4 {
+    padding-bottom: 0.5rem !important;
+  }
+
+  header .arrow-down {
+    margin-top: 2rem !important;
+  }
+
+  main.pt-4 {
+    padding-top: 1rem !important;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  header div h1 {
+    margin-top: 6rem !important;
+  }
+
+  .logo {
+    width: 70px;
+    margin-top: -15px;
+  }
+
+  .btn-outline-light {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  header div nav {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  header .arrow-down {
+    margin-top: 6.2rem !important;
+  }
+}
+
+
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #35568c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(0, 53, 87);
+}
