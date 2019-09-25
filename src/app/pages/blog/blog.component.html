@@ -8,9 +8,9 @@
     </div>
 </header>
 
-<main id="main" class="mt-5 pb-5 mb-5">
+<main id="main" class="mt-5 pb-4">
 
-    <section class="mt-2 pb-5 container" *ngIf="blog != null">
+    <section class="mt-2 container" *ngIf="blog != null">
 
         <div class="row">
             <div class="col-lg-9 column mb-5 article" [ngClass]="{'hide-on-init' : animate}" animateOnScroll animationName="animated fadeInLeft">
@@ -31,7 +31,27 @@
 
                     {{blog['body']}}
                 </div>
-                <hr />
+
+                <div class="post-nav row d-flex justify-content-between" *ngIf="blogs != null">
+                    <div class="prev col-md-6">
+                        <a *ngIf="prev != null" routerLink="/blog/{{prev['id']}}">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>
+                                <h3>Previous blog</h3>
+                                <h4>{{prev['title']}}</h4>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="next col-md-6">
+                        <a *ngIf="next != null" routerLink="/blog/{{next['id']}}">
+                            <span>
+                                <h3>Next blog</h3>
+                                <h4>{{next['title']}}</h4>
+                            </span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <aside class="col-lg-3 column" [ngClass]="{'hide-on-init' : animate}" animateOnScroll animationName="animated fadeInRight">

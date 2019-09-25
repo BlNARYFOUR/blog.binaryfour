@@ -16,6 +16,8 @@ export class BlogComponent implements OnInit {
     blog: any;
     blogs: any;
     animate: boolean;
+    prev: any;
+    next: any;
 
   constructor(
       private _route: ActivatedRoute,
@@ -36,7 +38,11 @@ export class BlogComponent implements OnInit {
 
     showBlog(id: number) {
         this._blogService.getBlog(id).subscribe((data) => {
-            this.blog = data['data'];
+            this.blog = data['current'];
+            this.next = data['next'];
+            this.prev = data['previous'];
+
+            //console.log(data)
         });
     }
 
@@ -45,5 +51,4 @@ export class BlogComponent implements OnInit {
             this.blogs = data['data'];
         });
     }
-
 }

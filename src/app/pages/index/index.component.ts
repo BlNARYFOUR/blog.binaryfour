@@ -16,7 +16,7 @@ export class IndexComponent implements OnInit {
 
     pageSize: number = 6;
     currentPage: number = 1;
-    totalItems: number = 18;
+    totalItems: number = 0;
 
   constructor(private _blogService: BlogService) { }
 
