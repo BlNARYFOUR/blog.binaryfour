@@ -11,12 +11,12 @@
 <main id="main" class="container-fluid mt-5 pb-5 mb-5">
 
     <section class="pb-3 container">
-        <nav class="mb-4"><a routerLink="/" skipLocationChange="true">blog</a> /</nav>
+        <nav class="mb-4"><a routerLink="/">blog</a> /</nav>
         <ul class="row justify-content-center list-unstyled">
-            <li class="col-xl-4 col-lg-6 col-md-6 p-3" [routerLink]="['/blog',blog['id']]" skipLocationChange="true" *ngFor="let blog of blogs">
+            <li class="col-xl-4 col-lg-6 col-md-6 p-3" [routerLink]="['/blog',blog['id']]" *ngFor="let blog of blogs">
                 <!--suppress HtmlUnknownAttribute -->
                 <figure class="m-0 height-auto rounded position-relative reveal hide-on-init" animateOnScroll animationName="animated fadeInUp">
-                    <img class="img-fluid" src="{{apiUrl}}images/{{blog['wallpaper']}}" [alt]="blog['wallpaper']" [title]="blog['title']"/>
+                    <img class="img-fluid" src="{{apiUrl}}blogs/images/{{blog['wallpaper']}}" [alt]="blog['wallpaper']" [title]="blog['title']"/>
                     <div class="location-wrapper">
                         <span class="location text position-absolute">{{blog['location']}}</span>
                         <span class="location position-absolute"></span>

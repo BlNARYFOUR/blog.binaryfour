@@ -14,8 +14,8 @@
 
         <div class="row">
             <div class="col-lg-9 column mb-5 article">
-                <nav class="mb-4"><a routerLink="/" skipLocationChange="true">blog</a> / <a routerLink="/blog/{{blog['id']}}" skipLocationChange="true">{{blog['title']}}</a></nav>
-                <img class="img-fluid w-100 rounded" src="{{apiUrl}}images/{{blog['wallpaper']}}" [alt]="blog['wallpaper']" [title]="blog['title']"/>
+                <nav class="mb-4"><a routerLink="/">blog</a> / <a routerLink="/blog/{{blog['id']}}">{{blog['title']}}</a></nav>
+                <img class="img-fluid w-100 rounded" src="{{apiUrl}}blogs/images/{{blog['wallpaper']}}" [alt]="blog['wallpaper']" [title]="blog['title']"/>
 
                 <div class="caption">
                     <span class="icon"></span><span class="name">Brend Lambert</span>
@@ -39,9 +39,9 @@
 
                 <ul class="list-unstyled">
                     <li class="mt-4" *ngFor="let b of blogs">
-                        <img skipLocationChange="true" routerLink="/blog/{{b['id']}}" class="img-fluid rounded" src="{{apiUrl}}images/{{b['wallpaper']}}" [alt]="b['wallpaper']" [title]="b['title']"/>
+                        <img routerLink="/blog/{{b['id']}}" class="img-fluid rounded" src="{{apiUrl}}blogs/images/{{b['wallpaper']}}" [alt]="b['wallpaper']" [title]="b['title']"/>
                         <div>
-                            <h3 skipLocationChange="true" routerLink="/blog/{{b['id']}}">{{b['title']}}</h3>
+                            <h3 routerLink="/blog/{{b['id']}}">{{b['title']}}</h3>
                             <span>{{b['date'].split(' ')[0]}}</span>
                         </div>
                     </li>
