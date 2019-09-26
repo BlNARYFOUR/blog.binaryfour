@@ -12,5 +12,36 @@
         <li class="d-inline-block"><a href="mailto:lambertbrend@gmail.com" class="far fa-envelope"></a></li>
     </ul>
 
-    <span class="pb-4 d-block lead text-light font-weight-light text-small reveal">Handcrafted by me &copy; BinaryFour</span>
+    <span class="pb-2 d-block lead text-light font-weight-light text-small reveal">Handcrafted by me &copy; BinaryFour</span>
+    <span class="pb-4 text-light"><a (click)="toggleLogin()">login</a> - <a>register</a></span>
 </footer>
+
+<div *ngIf="loginActive" class="login position-fixed fixed-top w-100 h-100" animateOnScroll animationName="fadeIn">
+    <div class="w-100 h-100 bg-darker text-center">
+        <div class="bg-white d-inline-block vertical-middle">
+            <span class="close" (click)="toggleLogin()"><i class="fas fa-times"></i></span>
+
+            <h3>Login</h3>
+
+            <form novalidate="">
+                <div class="cfield">
+                    <input formcontrolname="email" type="email" placeholder="Email address">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="input-error-message"><!----></div>
+                <div class="cfield">
+                    <input formcontrolname="password" type="password" placeholder="Password">
+                    <i class="fas fa-key"></i>
+                </div>
+
+                <button class="ng-tns-c3-0 login-button-invalid" type="submit" disabled="">Login</button>
+
+                <div class="create-account">
+                    <span class="ng-tns-c3-0">
+                        <a class="ng-tns-c3-0">Nog geen login, registreer je <strong>hier</strong>.</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
