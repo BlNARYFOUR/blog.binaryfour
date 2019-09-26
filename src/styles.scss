@@ -173,6 +173,7 @@ nav > a {
       padding: 40px 60px;
 
       > .close {
+        border: 1px solid #35568c;
         display: block;
         position: absolute;
         top: 0;
@@ -181,10 +182,11 @@ nav > a {
         height: 50px;
         text-shadow: none;
         color: white;
-        background-color: #35568c;
-        line-height: 47px;
+        background: #35568c;
+        line-height: 46px;
         font-size: 30px;
         cursor: pointer;
+        opacity: 1;
       }
 
       h3 {
@@ -217,10 +219,7 @@ nav > a {
             font-size: 16px;
             color: #474747;
             padding: 12px 45px 12px 15px;
-
-            &:focus {
-              outline: none;
-            }
+            outline: none;
           }
 
           > i {
@@ -241,11 +240,13 @@ nav > a {
           margin-top: 20px;
           border-radius: 8px;
           color: white;
-          border: 2px solid #ded9d9;
+          border: 2px solid #35568c;
           background: #35568c;
+          outline: none;
 
           &.login-button-invalid {
             background: #caccda;
+            border: 2px solid #caccda;
           }
         }
 
@@ -553,6 +554,19 @@ img {
     border: solid thin rgba(20, 0, 100, 0.1);
     border-left: none;
     border-right: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .account-popup {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .account-popup {
+    width: 94% !important;
   }
 }
 

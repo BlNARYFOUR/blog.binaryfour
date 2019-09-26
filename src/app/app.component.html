@@ -18,23 +18,25 @@
 
 <div *ngIf="loginActive" class="login position-fixed fixed-top w-100 h-100" animateOnScroll animationName="fadeIn">
     <div class="w-100 h-100 bg-darker text-center">
-        <div class="bg-white d-inline-block vertical-middle">
+        <div class="account-popup bg-white d-inline-block vertical-middle">
             <span class="close" (click)="toggleLogin()"><i class="fas fa-times"></i></span>
 
             <h3>Login</h3>
 
-            <form novalidate="">
-                <div class="cfield">
-                    <input formcontrolname="email" type="email" placeholder="Email address">
+            <form [formGroup]="loginForm" (submit)="loginSubmit()">
+                <div class="cfield" [ngClass]="{'input-error' : formControls().email.errors}">
+                    <input formControlName="email" type="email" placeholder="Email address">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="input-error-message"><!----></div>
-                <div class="cfield">
-                    <input formcontrolname="password" type="password" placeholder="Password">
+                <div class="cfield" [ngClass]="{'input-error' : formControls().password.errors}">
+                    <input formControlName="password" type="password" placeholder="Password">
                     <i class="fas fa-key"></i>
                 </div>
 
-                <button class="ng-tns-c3-0 login-button-invalid" type="submit" disabled="">Login</button>
+                <button class="ng-tns-c3-0" [ngClass]="{'login-button-invalid' : (loginForm.pristine || loginForm.invalid)}" type="submit" [disabled]="loginForm.pristine || loginForm.invalid">
+                    Login
+                </button>
 
                 <div class="create-account">
                     <span class="ng-tns-c3-0">

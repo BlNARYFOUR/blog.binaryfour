@@ -9,6 +9,7 @@ import { BlogSummaryComponent } from './pages/index/components/blogSummary/blog-
 import {AnimateOnScrollModule} from "ng2-animate-on-scroll";
 import { BlogComponent } from './pages/blog/blog.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import {NgxPaginationModule} from "ngx-pagination";
   ],
   imports: [
     BrowserModule,
+      FormsModule,
+      ReactiveFormsModule,
     AppRoutingModule,
       HttpClientModule,
       AnimateOnScrollModule.forRoot(),
