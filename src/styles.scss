@@ -197,6 +197,14 @@ nav > a {
         line-height: 10px;
       }
 
+      .show-error {
+        color: #f4516c !important;
+      }
+
+      .show-success {
+        color: green !important;
+      }
+
       > form {
         width: 100%;
         margin-top: 30px;
@@ -236,8 +244,8 @@ nav > a {
           height: 60px;
           font-size: 17px;
           font-weight: 700;
-          letter-spacing: .3px;
-          margin-top: 20px;
+          //letter-spacing: .3px;
+          margin-top: 25px;
           border-radius: 8px;
           color: white;
           border: 2px solid #35568c;
@@ -252,10 +260,18 @@ nav > a {
 
         > .input-error-message {
           height: 20px;
-          margin-bottom: 2px;
+          margin-bottom: 5px;
           width: 100%;
           color: #f4516c;
           position: relative;
+        }
+
+        > .register-name {
+          margin-bottom: 25px;
+        }
+
+        > .register-confirm-pass {
+          margin-top: 25px;
         }
 
         > .create-account {

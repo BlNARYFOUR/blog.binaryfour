@@ -13,34 +13,94 @@
     </ul>
 
     <span class="pb-2 d-block lead text-light font-weight-light text-small reveal">Handcrafted by me &copy; BinaryFour</span>
-    <span class="pb-4 text-light"><a (click)="toggleLogin()">login</a> - <a>register</a></span>
+    <span class="pb-4 text-light"><a (click)="toggleLogin()">login</a> - <a (click)="toggleRegister()">register</a></span>
 </footer>
 
-<div *ngIf="loginActive" class="login position-fixed fixed-top w-100 h-100" animateOnScroll animationName="fadeIn">
+<div *ngIf="loginActive" class="login position-fixed fixed-top w-100 h-100 hide-on-init" animateOnScroll animationName="animated fadeIn">
     <div class="w-100 h-100 bg-darker text-center">
         <div class="account-popup bg-white d-inline-block vertical-middle">
             <span class="close" (click)="toggleLogin()"><i class="fas fa-times"></i></span>
 
             <h3>Login</h3>
 
+            <span *ngIf="loginError" class="show-error">{{loginError}}</span>
+
             <form [formGroup]="loginForm" (submit)="loginSubmit()">
-                <div class="cfield" [ngClass]="{'input-error' : formControls().email.errors}">
+                <div class="cfield" [ngClass]="{'input-error' : loginForm.controls.email.errors}">
                     <input formControlName="email" type="email" placeholder="Email address">
                     <i class="fas fa-user"></i>
                 </div>
-                <div class="input-error-message"><!----></div>
-                <div class="cfield" [ngClass]="{'input-error' : formControls().password.errors}">
+                <div class="input-error-message">
+                    <span *ngIf="loginForm.controls.email.invalid">
+                        <span *ngIf="loginForm.controls.email.errors.email">Email is invalid.</span>
+                    </span>
+                </div>
+                <div class="cfield" [ngClass]="{'input-error' : loginForm.controls.password.errors}">
                     <input formControlName="password" type="password" placeholder="Password">
                     <i class="fas fa-key"></i>
                 </div>
 
-                <button class="ng-tns-c3-0" [ngClass]="{'login-button-invalid' : (loginForm.pristine || loginForm.invalid)}" type="submit" [disabled]="loginForm.pristine || loginForm.invalid">
-                    Login
+                <button [ngClass]="{'login-button-invalid' : (loginForm.pristine || loginForm.invalid || loginForm.pending)}" type="submit" [disabled]="loginForm.pristine || loginForm.invalid || loginForm.pending">
+                    <span *ngIf="!loginForm.pending">Login</span>
+                    <span *ngIf="loginForm.pending">Pending</span>
                 </button>
 
                 <div class="create-account">
                     <span class="ng-tns-c3-0">
-                        <a class="ng-tns-c3-0">Nog geen login, registreer je <strong>hier</strong>.</a>
+                        <a class="ng-tns-c3-0">No login? Register <strong (click)="toggleRegister(); toggleLogin()">here</strong>.</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="registerActive" class="login position-fixed fixed-top w-100 h-100 hide-on-init" animateOnScroll animationName="animated fadeIn">
+    <div class="w-100 h-100 bg-darker text-center">
+        <div class="account-popup bg-white d-inline-block vertical-middle">
+            <span class="close" (click)="toggleRegister()"><i class="fas fa-times"></i></span>
+
+            <h3>Register</h3>
+
+            <span *ngIf="registerError" class="show-error">{{registerError}}</span>
+            <span *ngIf="registerMessage" class="show-success">{{registerMessage}}</span>
+
+            <form [formGroup]="registerForm" (submit)="registerSubmit()">
+                <div class="cfield register-name" [ngClass]="{'input-error' : registerForm.controls.name.errors}">
+                    <input formControlName="name" type="text" placeholder="Name">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="cfield" [ngClass]="{'input-error' : registerForm.controls.email.errors}">
+                    <input formControlName="email" type="email" placeholder="Email address">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="input-error-message">
+                    <span *ngIf="registerForm.controls.email.invalid">
+                        <span *ngIf="registerForm.controls.email.errors.email">Email is invalid.</span>
+                    </span>
+                </div>
+                <div class="cfield" [ngClass]="{'input-error' : registerForm.controls.password.errors}">
+                    <input formControlName="password" type="password" placeholder="Password">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="cfield register-confirm-pass" [ngClass]="{'input-error' : registerForm.errors || registerForm.controls.confirmPassword.errors}">
+                    <input formControlName="confirmPassword" type="password" placeholder="Confirm password">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="input-error-message" *ngIf="registerForm.errors?.invalidConfirm">
+                    <span>
+                        <span>Passwords do not match.</span>
+                    </span>
+                </div>
+
+                <button [ngClass]="{'login-button-invalid' : (registerForm.pristine || registerForm.invalid || registerForm.pending)}" type="submit" [disabled]="registerForm.pristine || registerForm.invalid || registerForm.pending">
+                    <span *ngIf="!registerForm.pending">Register</span>
+                    <span *ngIf="registerForm.pending">Pending</span>
+                </button>
+
+                <div class="create-account">
+                    <span class="ng-tns-c3-0">
+                        <a class="ng-tns-c3-0">Or login <strong (click)="toggleLogin(); toggleRegister()">here</strong>.</a>
                     </span>
                 </div>
             </form>

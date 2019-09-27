@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {BlogService} from "../../services/blog.service";
 import {environment} from "../../../environments/environment";
 import {animate} from "@angular/animations";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-blog',
@@ -21,7 +22,8 @@ export class BlogComponent implements OnInit {
 
   constructor(
       private _route: ActivatedRoute,
-      private _blogService: BlogService
+      private _blogService: BlogService,
+      private _titleService: Title
   ) { }
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class BlogComponent implements OnInit {
             this.next = data['next'];
             this.prev = data['previous'];
 
+            this._titleService.setTitle('BinaryFour - ' + this.blog.title);
             //console.log(data)
         });
     }
