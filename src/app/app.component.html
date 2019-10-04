@@ -18,7 +18,7 @@
 
 <div *ngIf="loginActive" class="login position-fixed fixed-top w-100 h-100 hide-on-init" animateOnScroll animationName="animated fadeIn">
     <div class="w-100 h-100 bg-darker text-center">
-        <div class="account-popup bg-white d-inline-block vertical-middle">
+        <div class="account-popup bg-white d-inline-block">
             <span class="close" (click)="toggleLogin()"><i class="fas fa-times"></i></span>
 
             <h3>Login</h3>
@@ -103,6 +103,28 @@
                         <a class="ng-tns-c3-0">Or login <strong (click)="toggleLogin(); toggleRegister()">here</strong>.</a>
                     </span>
                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="verifyActive" class="login position-fixed fixed-top w-100 h-100 hide-on-init" animateOnScroll animationName="animated fadeIn">
+    <div class="w-100 h-100 bg-darker text-center">
+        <div class="account-popup bg-white d-inline-block">
+            <span class="close" (click)="toggleVerify()"><i class="fas fa-times"></i></span>
+
+            <h3>Verify</h3>
+
+            <span *ngIf="verifyError" class="show-error">{{verifyError}}</span>
+            <span *ngIf="verifyMessage" class="show-success">{{verifyMessage}}</span>
+
+            <form [formGroup]="verifyForm" (submit)="verifySubmit()">
+                <input formControlName="token" type="hidden" placeholder="Token">
+
+                <button [ngClass]="{'login-button-invalid' : (verifyForm.pristine || verifyForm.invalid || verifyForm.pending)}" type="submit" [disabled]="verifyForm.pristine || verifyForm.invalid || verifyForm.pending">
+                    <span *ngIf="!verifyForm.pending">Verify</span>
+                    <span *ngIf="verifyForm.pending">Pending</span>
+                </button>
             </form>
         </div>
     </div>

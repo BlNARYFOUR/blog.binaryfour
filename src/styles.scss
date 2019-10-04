@@ -10,7 +10,7 @@
 }
 
 html {
-  //scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 header {
@@ -24,10 +24,14 @@ header > div {
 
 nav {
   font-size: 1.25rem;
-}
 
-nav > a {
-  color: #35568c;
+  a {
+    color: #35568c;
+  }
+
+  ul {
+    display: inline-block;
+  }
 }
 
 .ngx-pagination {
@@ -161,14 +165,21 @@ nav > a {
 
 .login {
   > div {
+    overflow: auto;
+    line-height: 100vh;
+
     > div {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      line-height: normal;
       width: 460px;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      content: "";
-      -webkit-transform: translateY(-50%) translateX(-50%);
-      transform: translateY(-50%) translateX(-50%);
+      position: relative;
+      vertical-align: middle;
+      //position: absolute;
+      //left: 50%;
+      //top: 50%;
+      //-webkit-transform: translateY(-50%) translateX(-50%);
+      //transform: translateY(-50%) translateX(-50%);
       text-align: center;
       padding: 40px 60px;
 
@@ -183,7 +194,7 @@ nav > a {
         text-shadow: none;
         color: white;
         background: #35568c;
-        line-height: 46px;
+        line-height: 47px;
         font-size: 30px;
         cursor: pointer;
         opacity: 1;
@@ -346,6 +357,7 @@ footer > ul > li > a:hover {
   background-size: 30px;
   width: 40px;
   height: 40px;
+  line-height: 20px;
   border: 2px black solid;
   border-radius: 20px;
   top: 5px;
@@ -370,7 +382,7 @@ footer > ul > li > a:hover {
   width: 40px;
   padding-left: 0;
   padding-right: 0;
-  line-height: 32px;
+  line-height: 35px;
   background: rgb(250, 250, 250);
   text-align: right;
   overflow: hidden;
@@ -395,6 +407,10 @@ li > figure {
   width: 45px;
   display: block;
   margin-top: -3px;
+}
+
+.login-message {
+  color: white;
 }
 
 .logo.big {
@@ -566,10 +582,14 @@ img {
     flex: inherit;
   }
 
-  .container-overlap > div > section:nth-of-type(2):nth-last-child(2)  {
+  .container-overlap > div > section:nth-of-type(2):nth-last-child(2) {
     border: solid thin rgba(20, 0, 100, 0.1);
     border-left: none;
     border-right: none;
+  }
+
+  .hide-phone {
+    display: none;
   }
 }
 
@@ -583,6 +603,16 @@ img {
 @media (max-width: 520px) {
   .account-popup {
     width: 94% !important;
+  }
+}
+
+@media (max-width: 601px) {
+  .pagination-next {
+    margin-left: 10px !important;
+  }
+
+  .pagination-previous {
+    margin-right: 10px !important;
   }
 }
 

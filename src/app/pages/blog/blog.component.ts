@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {BlogService} from "../../services/blog.service";
 import {environment} from "../../../environments/environment";
 import {animate} from "@angular/animations";
 import {Title} from "@angular/platform-browser";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
-  selector: 'app-blog',
+    selector: 'app-blog',
     providers: [BlogService],
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss']
+    templateUrl: './blog.component.html',
+    styleUrls: ['./blog.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class BlogComponent implements OnInit {
 
@@ -20,23 +22,31 @@ export class BlogComponent implements OnInit {
     prev: any;
     next: any;
 
-  constructor(
-      private _route: ActivatedRoute,
-      private _blogService: BlogService,
-      private _titleService: Title
-  ) { }
+    constructor(private _router: Router,
+                private _route: ActivatedRoute,
+                private _blogService: BlogService,
+                private _titleService: Title) {
+    }
 
-  ngOnInit() {
-      this.animate = this._blogService.doPostAnimation();
-      this._blogService.disablePostAnimation();
+    ngOnInit() {
+        this.animate = this._blogService.doPostAnimation();
+        this._blogService.disablePostAnimation();
 
-      this._route.paramMap.subscribe(params => {
-          let id = parseInt(params.get('id'));
+        this._route.paramMap.subscribe(params => {
+            let id = parseInt(params.get('id'));
 
-          this.showBlog(id);
-          this.showOtherLatestBlogs(id);
-      });
-  }
+            this.showBlog(id);
+            this.showOtherLatestBlogs(id);
+        });
+    }
+
+    isLoggedIn = () => {
+        return AuthService.isLoggedIn;
+    };
+
+    getUser = () => {
+        return AuthService.user;
+    };
 
     showBlog(id: number) {
         this._blogService.getBlog(id).subscribe((data) => {
@@ -53,5 +63,9 @@ export class BlogComponent implements OnInit {
         this._blogService.getLatestBlogs(skipId).subscribe((data) => {
             this.blogs = data['data'];
         });
+    }
+
+    gotoUpdateForm() {
+        this._router.navigateByUrl('/');
     }
 }
