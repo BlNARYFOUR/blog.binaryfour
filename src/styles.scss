@@ -574,6 +574,10 @@ img {
   opacity: 1;
 }
 
+.font-size-huge {
+  font-size: 110px;
+}
+
 @media screen and (max-width: 768px) {
   .container-overlap > div > section {
     display: block !important;

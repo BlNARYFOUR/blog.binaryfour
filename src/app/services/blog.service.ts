@@ -15,8 +15,8 @@ export class BlogService {
     latestBlogsUrl = environment.apiUrl + 'blogs/latest/';
     blogUrl = environment.apiUrl + 'blogs/';
 
-    getBlogs(page: number) {
-        return this._http.get(this.blogsUrl + '?page=' + page);
+    getBlogs(page: number, size: number) {
+        return this._http.get(this.blogsUrl + '?page=' + page + '&size=' + size);
     }
 
     getLatestBlogs(skipId: number) {

@@ -26,19 +26,29 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
       this.token = localStorage.getItem('ACCESS_TOKEN');
       this._blogService.enablePostAnimation();
-      this.showBlogs(this.currentPage);
+
+      AuthService.changes.subscribe(value => {
+          if(value == AuthService.getChangeIDs().SET_LOGGED_IN) {
+              this.showBlogs(this.currentPage, this.getPageSize());
+              console.log("CHANGED: Subscribe", value);
+          }
+      });
   }
 
   isLoggedIn = () => {
       return AuthService.isLoggedIn;
   };
 
+  getPageSize = () => {
+      return this.isLoggedIn() ? this.pageSize - 1 : this.pageSize;
+  };
+
   getUser = () => {
       return AuthService.user;
   };
 
-  showBlogs(page) {
-      this._blogService.getBlogs(page).subscribe((data) => {
+  showBlogs(page, size) {
+      this._blogService.getBlogs(page, size).subscribe((data) => {
           this.blogs = data['data'];
           this.totalItems = data['meta']['total'];
           console.log(data);
@@ -47,7 +57,8 @@ export class IndexComponent implements OnInit {
 
   pageChanged($page) {
       this.currentPage = $page;
-      this.showBlogs($page);
+      this.showBlogs($page, this.getPageSize());
+      console.log("CHANGED: pageChanged");
   }
 
 }

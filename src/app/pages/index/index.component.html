@@ -32,7 +32,16 @@
         </nav>
 
         <ul class="row justify-content-center list-unstyled">
-            <li class="col-xl-4 col-lg-6 col-md-6 p-3" *ngFor="let blog of blogs | paginate: { id: 'blogs', itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems }">
+            <li class="col-xl-4 col-lg-6 col-md-6 p-3" *ngIf="isLoggedIn()">
+                <!--suppress HtmlUnknownAttribute -->
+                <figure class="m-0 height-auto rounded position-relative reveal hide-on-init" animateOnScroll animationName="animated fadeIn">
+                    <img class="img-fluid" src="../../../assets/media/banner.jpg" alt="Add blog" title="Add blog"/>
+                    <figcaption class="container bg-darker position-absolute fixed-top h-100 vertical-middle">
+                        <h2 class="text-white text-center w-100 font-size-huge h-75">+</h2>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="col-xl-4 col-lg-6 col-md-6 p-3" *ngFor="let blog of blogs | paginate: { id: 'blogs', itemsPerPage: getPageSize(), currentPage: currentPage, totalItems: totalItems }">
                 <!--suppress HtmlUnknownAttribute -->
                 <figure class="m-0 height-auto rounded position-relative reveal hide-on-init" animateOnScroll animationName="animated fadeIn">
                     <img class="img-fluid" routerLink="/blog/{{blog['id']}}" src="{{apiUrl}}blogs/images/{{blog['id']}}" [alt]="blog['id']" [title]="blog['title']"/>

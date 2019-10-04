@@ -34,8 +34,9 @@ export class AppComponent {
 
         AuthService.token = token;
         if(token != null) {
-            AuthService.setLoggedIn(true);
             this.getLoggedInUser();
+        } else {
+            AuthService.setLoggedIn(false);
         }
 
         this.createForms();
@@ -102,7 +103,6 @@ export class AppComponent {
                 AuthService.token = data.access_token;
                 localStorage.setItem('ACCESS_TOKEN', data.access_token);
                 this.getLoggedInUser();
-                AuthService.setLoggedIn(true);
                 this.loginActive = false;
             },
             error: (data: any) => {
@@ -121,9 +121,14 @@ export class AppComponent {
             next: (data: any) => {
                 console.log(data);
                 AuthService.setUser(data.data);
+                AuthService.setLoggedIn(true);
             },
             error: (data: any) => {
                 console.log(data);
+                if(data.status === 401) {
+                    console.log('UNAUTHORIZED');
+                    AuthService.clientLogout();
+                }
             }
         });
     }

@@ -14,19 +14,35 @@ export class AuthService {
 
     public static token = null;
     public static isLoggedIn = false;
-    public static loggedInObs = new BehaviorSubject(false);
     public static user = null;
+    public static changes = new BehaviorSubject(null);
 
     constructor(private _http: HttpClient) {
     }
 
+    public static getChangeIDs() {
+        return {
+            INIT: null,
+            SET_LOGGED_IN: 0,
+            SET_USER: 1
+        }
+    }
+
+    public static markChanged(id) {
+        console.log("CHANGED: markChanged");
+        AuthService.changes.next(id);
+    }
+
     public static setLoggedIn(val) {
         AuthService.isLoggedIn = val;
-        this.loggedInObs.next(val);
+        console.log("CHANGED: setLoggedIn");
+        AuthService.markChanged(AuthService.getChangeIDs().SET_LOGGED_IN);
     }
 
     public static setUser(val) {
         this.user = val;
+        AuthService.markChanged(AuthService.getChangeIDs().SET_USER);
+        console.log("CHANGED: setUser");
     }
 
     public login(userInfo: any) {
@@ -41,6 +57,12 @@ export class AuthService {
 
     public logout() {
         AuthService.token = null;
+    }
+
+    public static clientLogout() {
+        localStorage.removeItem('ACCESS_TOKEN');
+        AuthService.token = null;
+        AuthService.setLoggedIn(false);
     }
 
     public register(userInfo: any) {
