@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BlogService} from "../../services/blog.service";
 import {environment} from "../../../environments/environment";
 import {split} from "ts-node";
 import {AuthService} from "../../services/auth.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-index',
+    selector: 'app-index',
     providers: [BlogService, AuthService],
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+    templateUrl: './index.component.html',
+    styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
 
@@ -21,45 +22,49 @@ export class IndexComponent implements OnInit {
 
     token: string;
 
-  constructor(private _blogService: BlogService, private _authService: AuthService) {}
+    constructor(private _blogService: BlogService,
+                private _authService: AuthService,
+                private _titleService: Title) {
+    }
 
-  ngOnInit() {
-      this.token = localStorage.getItem('ACCESS_TOKEN');
-      this._blogService.enablePostAnimation();
+    ngOnInit() {
+        this._titleService.setTitle('BinaryFour - Blog');
+        this.token = localStorage.getItem('ACCESS_TOKEN');
+        this._blogService.enablePostAnimation();
 
-      AuthService.changes.subscribe(value => {
-          if(value == AuthService.getChangeIDs().SET_LOGGED_IN) {
-              this.showBlogs(this.currentPage, this.getPageSize());
-              console.log("CHANGED: Subscribe", value);
-          }
-      });
-  }
+        AuthService.changes.subscribe(value => {
+            if (value == AuthService.getChangeIDs().SET_LOGGED_IN) {
+                this.showBlogs(this.currentPage, this.getPageSize());
+                console.log("CHANGED: Subscribe", value);
+            }
+        });
+    }
 
-  isLoggedIn = () => {
-      return AuthService.isLoggedIn;
-  };
+    isLoggedIn = () => {
+        return AuthService.isLoggedIn;
+    };
 
-  getPageSize = () => {
-      return this.isLoggedIn() ? this.pageSize - 1 : this.pageSize;
-  };
+    getPageSize = () => {
+        return this.isLoggedIn() ? this.pageSize - 1 : this.pageSize;
+    };
 
-  getUser = () => {
-      return AuthService.user;
-  };
+    getUser = () => {
+        return AuthService.user;
+    };
 
-  showBlogs(page, size) {
-      this._blogService.getBlogs(page, size).subscribe((data) => {
-          this.blogs = data['data'];
-          this.totalItems = data['meta']['total'];
-          console.log(data);
-      });
-  }
+    showBlogs(page, size) {
+        this._blogService.getBlogs(page, size).subscribe((data) => {
+            this.blogs = data['data'];
+            this.totalItems = data['meta']['total'];
+            console.log(data);
+        });
+    }
 
-  pageChanged($page) {
-      this.currentPage = $page;
-      this.showBlogs($page, this.getPageSize());
-      console.log("CHANGED: pageChanged");
-  }
+    pageChanged($page) {
+        this.currentPage = $page;
+        this.showBlogs($page, this.getPageSize());
+        console.log("CHANGED: pageChanged");
+    }
 
     logoutSubmit() {
         this._authService.logout().subscribe({
@@ -71,7 +76,7 @@ export class IndexComponent implements OnInit {
             error: (data: any) => {
                 console.log(data.error.error);
 
-                if(data.error) {
+                if (data.error) {
                     // this.logoutError = data.error.error ? data.error.error : 'Login failed. Try again later.';
                 }
             }

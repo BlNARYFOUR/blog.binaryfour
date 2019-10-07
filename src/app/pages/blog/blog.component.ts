@@ -3,12 +3,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {BlogService} from "../../services/blog.service";
 import {environment} from "../../../environments/environment";
 import {animate} from "@angular/animations";
-import {Title} from "@angular/platform-browser";
+import {Meta, Title} from "@angular/platform-browser";
 import {AuthService} from "../../services/auth.service";
 
 @Component({
     selector: 'app-blog',
-    providers: [BlogService],
+    providers: [AuthService, BlogService],
     templateUrl: './blog.component.html',
     styleUrls: ['./blog.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -24,8 +24,10 @@ export class BlogComponent implements OnInit {
 
     constructor(private _router: Router,
                 private _route: ActivatedRoute,
+                private _authService: AuthService,
                 private _blogService: BlogService,
-                private _titleService: Title) {
+                private _titleService: Title,
+                private meta: Meta) {
     }
 
     ngOnInit() {
@@ -55,7 +57,11 @@ export class BlogComponent implements OnInit {
             this.prev = data['previous'];
 
             this._titleService.setTitle('BinaryFour - ' + this.blog.title);
-            //console.log(data)
+            this.meta.addTag({property: 'og:url', content: this._router.url});
+            this.meta.addTag({property: 'og:type', content: 'article'});
+            this.meta.addTag({property: 'og:title', content: this.blog.title});
+            this.meta.addTag({property: 'og:description', content: this.blog.body});
+            this.meta.addTag({property: 'og:image', content: this.apiUrl + 'blogs/images/' + this.blog.id});
         });
     }
 
@@ -67,5 +73,22 @@ export class BlogComponent implements OnInit {
 
     gotoUpdateForm() {
         this._router.navigateByUrl('/');
+    }
+
+    logoutSubmit() {
+        this._authService.logout().subscribe({
+            next: (data: any) => {
+                // this.logoutMessage = 'You have been logged in!';
+                console.log(data);
+                AuthService.clientLogout();
+            },
+            error: (data: any) => {
+                console.log(data.error.error);
+
+                if (data.error) {
+                    // this.logoutError = data.error.error ? data.error.error : 'Login failed. Try again later.';
+                }
+            }
+        });
     }
 }
