@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit {
 
     token: string;
 
-  constructor(private _blogService: BlogService) {}
+  constructor(private _blogService: BlogService, private _authService: AuthService) {}
 
   ngOnInit() {
       this.token = localStorage.getItem('ACCESS_TOKEN');
@@ -61,4 +61,20 @@ export class IndexComponent implements OnInit {
       console.log("CHANGED: pageChanged");
   }
 
+    logoutSubmit() {
+        this._authService.logout().subscribe({
+            next: (data: any) => {
+                // this.logoutMessage = 'You have been logged in!';
+                console.log(data);
+                AuthService.clientLogout();
+            },
+            error: (data: any) => {
+                console.log(data.error.error);
+
+                if(data.error) {
+                    // this.logoutError = data.error.error ? data.error.error : 'Login failed. Try again later.';
+                }
+            }
+        });
+    }
 }

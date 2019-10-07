@@ -13,7 +13,7 @@
     </ul>
 
     <span class="pb-2 d-block lead text-light font-weight-light text-small reveal">Handcrafted by me &copy; BinaryFour</span>
-    <span class="pb-4 text-light"><a (click)="toggleLogin()">login</a> - <a (click)="toggleRegister()">register</a></span>
+    <span class="pb-4 text-light" *ngIf="!isLoggedIn()"><a (click)="toggleLogin()">login</a> - <a (click)="toggleRegister()">register</a></span>
 </footer>
 
 <div *ngIf="loginActive" class="login position-fixed fixed-top w-100 h-100 hide-on-init" animateOnScroll animationName="animated fadeIn">

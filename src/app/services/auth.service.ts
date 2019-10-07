@@ -10,6 +10,7 @@ export class AuthService {
     private loginUrl: string = environment.apiUrl + 'login';
     private registerUrl: string = environment.apiUrl + 'register';
     private verifyUrl: string = environment.apiUrl + 'verify';
+    private logoutUrl: string = environment.apiUrl + 'logout';
     private getLoggedInUrl: string = environment.apiUrl + 'logged-in';
 
     public static token = null;
@@ -56,7 +57,9 @@ export class AuthService {
     }
 
     public logout() {
-        AuthService.token = null;
+        return this._http.post(this.logoutUrl, {}, {
+            headers: {'Authorization': 'Bearer ' + AuthService.token}
+        });
     }
 
     public static clientLogout() {

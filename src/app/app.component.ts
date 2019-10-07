@@ -79,6 +79,10 @@ export class AppComponent {
         return pass === confirmPass ? null : { invalidConfirm: true }
     };
 
+    isLoggedIn = () => {
+        return AuthService.isLoggedIn;
+    };
+
     toggleLogin() {
         this.loginActive = !this.loginActive;
     }
@@ -104,6 +108,7 @@ export class AppComponent {
                 localStorage.setItem('ACCESS_TOKEN', data.access_token);
                 this.getLoggedInUser();
                 this.loginActive = false;
+                window.scrollTo(0,0);
             },
             error: (data: any) => {
                 this.loginForm.reset();
