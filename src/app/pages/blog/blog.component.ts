@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {BlogService} from "../../services/blog.service";
 import {environment} from "../../../environments/environment";
 import {animate} from "@angular/animations";
-import {Meta, Title} from "@angular/platform-browser";
+import {Title} from "@angular/platform-browser";
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -26,8 +26,7 @@ export class BlogComponent implements OnInit {
                 private _route: ActivatedRoute,
                 private _authService: AuthService,
                 private _blogService: BlogService,
-                private _titleService: Title,
-                private meta: Meta) {
+                private _titleService: Title) {
     }
 
     ngOnInit() {
@@ -57,11 +56,7 @@ export class BlogComponent implements OnInit {
             this.prev = data['previous'];
 
             this._titleService.setTitle('BinaryFour - ' + this.blog.title);
-            this.meta.addTag({property: 'og:url', content: this._router.url});
-            this.meta.addTag({property: 'og:type', content: 'article'});
-            this.meta.addTag({property: 'og:title', content: this.blog.title});
-            this.meta.addTag({property: 'og:description', content: this.blog.body});
-            this.meta.addTag({property: 'og:image', content: this.apiUrl + 'blogs/images/' + this.blog.id});
+            //console.log(data)
         });
     }
 
