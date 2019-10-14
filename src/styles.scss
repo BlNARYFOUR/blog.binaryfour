@@ -35,7 +35,6 @@ nav {
 }
 
 select {
-  background: #fff;
   -ms-box-shadow: none;
   -o-box-shadow: none;
   box-shadow: none;
@@ -46,7 +45,7 @@ select {
   color: #000;
   border-radius: 30px !important;
   height: 42px;
-  line-height: 1.2;
+  line-height: 17px;
   outline: none;
   -webkit-appearance: none;
   -webkit-padding-end: 29px !important;
@@ -55,6 +54,7 @@ select {
   -o-appearance: none;
   appearance: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 form {
@@ -90,6 +90,7 @@ form {
     border-radius: 30px !important;
     height: 42px;
     line-height: 1.2;
+    outline: none;
 
     &:hover {
       background: #85b6fc30 !important;
@@ -702,6 +703,26 @@ img {
           color: transparent;
           * {
             color: transparent;
+            background-color: transparent;
+          }
+
+          &:after, > a::after {
+            display: block !important;
+            position: absolute;
+            right: 14px;
+            bottom: 13px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            border-radius: 0.15rem;
+            width: 10px;
+            height: 10px;
+            border-bottom: 3px solid #35568c;
+            border-right: 3px solid #35568c;
+          }
+
+          > a::after {
+            right: 17px;
+            bottom: 16px;
           }
         }
 
@@ -713,40 +734,28 @@ img {
           color: transparent;
           * {
             color: transparent;
+            background-color: transparent;
+          }
+
+          &:before, > a::before {
+            display: block !important;
+            position: absolute;
+            left: 14px;
+            bottom: 13px;
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+            border-radius: 0.15rem;
+            width: 10px;
+            height: 10px;
+            border-bottom: 3px solid #35568c;
+            border-right: 3px solid #35568c;
+          }
+
+          > a::before {
+            left: 17px;
+            bottom: 16px;
           }
         }
-      }
-
-      .arrow-left {
-        display: block !important;
-        position: absolute;
-        left: 18px;
-        bottom: 31px;
-        margin-left: auto;
-        margin-right: auto;
-        -webkit-transform: rotate(135deg);
-        transform: rotate(135deg);
-        border-radius: 0.15rem;
-        width: 10px;
-        height: 10px;
-        border-bottom: 3px solid #35568c;
-        border-right: 3px solid #35568c;
-      }
-
-      .arrow-right {
-        display: block !important;
-        position: absolute;
-        right: 18px;
-        bottom: 31px;
-        margin-left: auto;
-        margin-right: auto;
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        border-radius: 0.15rem;
-        width: 10px;
-        height: 10px;
-        border-bottom: 3px solid #35568c;
-        border-right: 3px solid #35568c;
       }
     }
   }

@@ -17,8 +17,8 @@
     <section class="pb-3 container">
         <nav class="ph-w-100 mb-4 d-flex justify-content-between">
             <form [formGroup]="filterForm">
-                <select formControlName="tagId" title="Tag Filter">
-                    <option value="">All</option>
+                <select formControlName="tagId" title="Filter on tag">
+                    <option value="">Show all tags</option>
                     <option [value]="tag.id" *ngFor="let tag of tags">{{tag.name}}</option>
                 </select>
                 <span class="arrow-down"></span>
@@ -36,7 +36,6 @@
                                   screenReaderPageLabel="page"
                                   screenReaderCurrentLabel="You're on page">
             </pagination-controls>
-            <span class="arrow-left d-none"></span><span class="arrow-right d-none"></span>
         </nav>
 
         <ul class="row justify-content-center list-unstyled">
