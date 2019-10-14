@@ -15,8 +15,15 @@
 <main id="main" class="container-fluid mt-5 pb-5 mb-5">
 
     <section class="pb-3 container">
-        <nav class="mb-4 d-flex justify-content-between">
-            <span><a routerLink="/">blog</a> /</span>
+        <nav class="ph-w-100 mb-4 d-flex justify-content-between">
+            <form [formGroup]="filterForm">
+                <select formControlName="tagId" title="Tag Filter">
+                    <option value="">All</option>
+                    <option [value]="tag.id" *ngFor="let tag of tags">{{tag.name}}</option>
+                </select>
+                <span class="arrow-down"></span>
+            </form>
+
             <pagination-controls  id="blogs"
                                   (pageChange)="pageChanged($event)"
                                   maxSize="5"
@@ -29,6 +36,7 @@
                                   screenReaderPageLabel="page"
                                   screenReaderCurrentLabel="You're on page">
             </pagination-controls>
+            <span class="arrow-left d-none"></span><span class="arrow-right d-none"></span>
         </nav>
 
         <ul class="row justify-content-center list-unstyled">

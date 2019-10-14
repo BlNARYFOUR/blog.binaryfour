@@ -14,9 +14,10 @@ export class BlogService {
     blogsUrl = environment.apiUrl + 'blogs';
     latestBlogsUrl = environment.apiUrl + 'blogs/latest/';
     blogUrl = environment.apiUrl + 'blogs/';
+    tagsUrl = environment.apiUrl + 'blogs/tags';
 
-    getBlogs(page: number, size: number) {
-        return this._http.get(this.blogsUrl + '?page=' + page + '&size=' + size);
+    getBlogs(tagId: number, page: number, size: number) {
+        return this._http.get(this.blogsUrl + '?page=' + page + '&size=' + size + '&tag=' + tagId);
     }
 
     getLatestBlogs(skipId: number) {
@@ -25,6 +26,10 @@ export class BlogService {
 
     getBlog(id: number) {
         return this._http.get(this.blogUrl + id);
+    }
+
+    getTags() {
+        return this._http.get(this.tagsUrl);
     }
 
     enablePostAnimation() {
