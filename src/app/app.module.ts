@@ -10,13 +10,15 @@ import {AnimateOnScrollModule} from "ng2-animate-on-scroll";
 import { BlogComponent } from './pages/blog/blog.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CreateComponent } from './pages/create/create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     BlogSummaryComponent,
-    BlogComponent
+    BlogComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
