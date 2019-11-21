@@ -1,0 +1,17 @@
+<header>
+    <div class="jumbotron pb-5 rounded-0 text-center bg-darker">
+        <nav class="pb-5">
+            <img class="logo float-left" src="../../../assets/media/logo_03.png" alt="Logo" name="Logo" />
+            <span class="float-right lead login-message" *ngIf="isLoggedIn()">
+                <span class="hide-phone">Welcome <span class="text-light" *ngIf="getUser()">{{getUser().name}}</span>! - </span>
+                <a (click)="logoutSubmit()">logout</a>
+            </span>
+        </nav>
+
+        <h1 class="mb-2 h2 font-weight-bold text-center text-white hide-on-init" animateOnScroll animationName="animated fadeIn">{{blog == null ? '&nbsp;' : blog['title']}}</h1>
+    </div>
+</header>
+
+<main>
+    <p>create works!</p>
+</main>
