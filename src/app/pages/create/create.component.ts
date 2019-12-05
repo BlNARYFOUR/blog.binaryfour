@@ -123,14 +123,10 @@ export class CreateComponent implements OnInit {
         this._blogService.createBlog(data).subscribe({
             next: (data: any) => {
                 this.postForm.reset();
-                //this.newTagError = 'You have been logged in!';
-                console.log(data.data);
-
-                this.newTagActive = false;
+                this._router.navigateByUrl('/blog/' + data.id);
             },
             error: (data: any) => {
                 console.log(data.error.error);
-                this.postForm.markAsUntouched();
                 if(data.error) {
                     // this.newTagError = data.error.error ? data.error.error : 'Creating blog failed. Try again later.';
                 }
