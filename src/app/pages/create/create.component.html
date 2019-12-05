@@ -1,17 +1,80 @@
 <header>
     <div class="jumbotron pb-5 rounded-0 text-center bg-darker">
         <nav class="pb-5">
-            <img class="logo float-left" src="../../../assets/media/logo_03.png" alt="Logo" name="Logo" />
+            <img class="logo float-left" src="../../../assets/media/logo_03.png" alt="Logo" name="Logo" routerLink="/" />
             <span class="float-right lead login-message" *ngIf="isLoggedIn()">
                 <span class="hide-phone">Welcome <span class="text-light" *ngIf="getUser()">{{getUser().name}}</span>! - </span>
                 <a (click)="logoutSubmit()">logout</a>
             </span>
         </nav>
 
-        <h1 class="mb-2 h2 font-weight-bold text-center text-white hide-on-init" animateOnScroll animationName="animated fadeIn">{{blog == null ? '&nbsp;' : blog['title']}}</h1>
+        <h1 class="mb-2 h2 font-weight-bold text-center text-white hide-on-init" animateOnScroll animationName="animated fadeIn">Create new blog post</h1>
     </div>
 </header>
 
-<main>
-    <p>create works!</p>
+<main class="custom-form">
+
+    <section class="container">
+        <div class="row">
+            <form [formGroup]="postForm" (submit)="loginSubmit()" class="mt-4 col-lg-8 ml-auto mr-auto">
+                <div class="row">
+                    <div class="form-group col-sm-5 col-md-4">
+                        <label for="date">Date</label>
+                        <input class="form-control" id="date" formControlName="date" type="date"/>
+                    </div>
+                    <div class="form-group col-sm-2 col-md-3">
+                        <label for="duration">Duration</label>
+                        <input class="form-control" id="duration" formControlName="duration" type="number"
+                               placeholder="1,5" min="0" step="0.5"/>
+                        <small class="form-text text-muted">In hours.</small>
+                    </div>
+                    <div class="form-group col-sm-5">
+                        <label for="location">Location</label>
+                        <input class="form-control" id="location" formControlName="location" type="text"
+                               placeholder="e.g. Howest, Bruges"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="tag">Tag</label>
+
+                        <div class="position-relative">
+                            <select id="tag" formControlName="tag" title="Filter on tag" class="w-100">
+                                <option value="">None</option>
+                                <option [value]="tag.id" *ngFor="let tag of tags">{{tag.name}}</option>
+                            </select>
+                            <span class="arrow-down"></span>
+                            <small class="form-text text-muted text-right">Or add <a class="click" (click)="showNewTag()">new</a>.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="cfield" [ngClass]="{'input-error' : loginForm.controls.email.errors}">-->
+                <!--<input formControlName="email" type="email" placeholder="Email address">-->
+                <!--<i class="fas fa-user"></i>-->
+                <!--</div>-->
+                <!--<div class="input-error-message">-->
+                <!--<span *ngIf="loginForm.controls.email.invalid">-->
+                <!--<span *ngIf="loginForm.controls.email.errors.email">Email is invalid.</span>-->
+                <!--</span>-->
+                <!--</div>-->
+                <!--<div class="cfield" [ngClass]="{'input-error' : loginForm.controls.password.errors}">-->
+                <!--<input formControlName="password" type="password" placeholder="Password">-->
+                <!--<i class="fas fa-key"></i>-->
+                <!--</div>-->
+
+                <!--<button [ngClass]="{'login-button-invalid' : (loginForm.pristine || loginForm.invalid || loginForm.pending)}" type="submit" [disabled]="loginForm.pristine || loginForm.invalid || loginForm.pending">-->
+                <!--<span *ngIf="!loginForm.pending">Login</span>-->
+                <!--<span *ngIf="loginForm.pending">Pending</span>-->
+                <!--</button>-->
+
+                <!--<div class="create-account">-->
+                <!--<span class="ng-tns-c3-0">-->
+                <!--<a class="ng-tns-c3-0">No login? Register <strong (click)="toggleRegister(); toggleLogin()">here</strong>.</a>-->
+                <!--</span>-->
+                <!--</div>-->
+            </form>
+        </div>
+    </section>
 </main>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {BlogService} from "../../services/blog.service";
 import {environment} from "../../../environments/environment";
 import {split} from "ts-node";
@@ -33,6 +33,11 @@ export class IndexComponent implements OnInit {
         this.filterForm = this._formBuilder.group({
             tagId: ['']
         });
+    }
+
+    @HostListener('window:beforeunload', ['$event'])
+    beforeUnloadHandler(e) {
+        localStorage.removeItem('ACCESS_TOKEN');
     }
 
     ngOnInit() {

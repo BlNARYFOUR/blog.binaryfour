@@ -1,23 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Title} from "@angular/platform-browser";
+import {BlogService} from "../../services/blog.service";
 
 @Component({
-  selector: 'app-create',
-  providers: [AuthService],
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+    selector: 'app-create',
+    providers: [AuthService, BlogService],
+    templateUrl: './create.component.html',
+    styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private _router: Router,
-              private _authService: AuthService) { }
+    postForm: FormGroup;
+    tags: any;
 
-  ngOnInit() {
-      if (!this.isLoggedIn()) {
-          this._router.navigateByUrl('/');
-      }
-  }
+    constructor(private _formBuilder: FormBuilder,
+                private _router: Router,
+                private _authService: AuthService,
+                private _titleService: Title,
+                private _blogService: BlogService) {
+        this.createForms();
+    }
+
+    createForms() {
+        this.postForm = this._formBuilder.group({
+            date: ['', [Validators.required]],
+            location: ['', [Validators.required]],
+            duration: ['', [Validators.required]],
+            tag: ['', [Validators.required]],
+        });
+    }
+
+    ngOnInit() {
+        this.showTags();
+        this._titleService.setTitle('BinaryFour - Create Post');
+
+        if (!this.isLoggedIn()) {
+            this._router.navigateByUrl('/');
+        }
+    }
+
+    showTags() {
+        this._blogService.getTags().subscribe((data) => {
+            this.tags = data['data'];
+        });
+    }
 
     isLoggedIn = () => {
         return AuthService.isLoggedIn;
@@ -43,5 +72,9 @@ export class CreateComponent implements OnInit {
                 }
             }
         });
+    }
+
+    showNewTag() {
+
     }
 }

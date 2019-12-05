@@ -23,6 +23,10 @@
                     <span class="d-inline">
                         <a routerLink="/">blog</a>
                          /
+                        <ng-container *ngIf="blog['tag'] != null">
+                            <a routerLink="/">{{blog['tag']}}</a>
+                            /
+                        </ng-container>
                         <a routerLink="/blog/{{blog['id']}}">{{blog['title']}}</a>
                     </span>
                 </nav>
@@ -38,25 +42,25 @@
                     </div>
                 </div>
 
-                <div class="body" [innerHtml]="'<h2>' + blog['title'] + '</h2>' + blog['body']">
+                <div class="body" [innerHtml]="'<h2>' + blog['title'] + '</h2>' + '<h4>Written for ' + blog['goal_audience'] + '</h4>' + blog['body']">
                 </div>
 
                 <div class="post-nav row ml-0 mr-0 d-flex justify-content-between" *ngIf="blogs != null">
                     <div class="prev col-md-6">
                         <a *ngIf="prev != null" routerLink="/blog/{{prev['id']}}">
                             <i class="fas fa-arrow-left"></i>
-                            <span>
+                            <div>
                                 <h3>Previous blog</h3>
                                 <h4>{{prev['title']}}</h4>
-                            </span>
+                            </div>
                         </a>
                     </div>
                     <div class="next col-md-6">
                         <a *ngIf="next != null" routerLink="/blog/{{next['id']}}">
-                            <span>
+                            <div>
                                 <h3>Next blog</h3>
                                 <h4>{{next['title']}}</h4>
-                            </span>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
