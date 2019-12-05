@@ -1,7 +1,7 @@
 <header>
     <div class="jumbotron pb-5 rounded-0 text-center bg-darker">
         <nav class="pb-5">
-            <img class="logo float-left" src="../../../assets/media/logo_03.png" alt="Logo" name="Logo" routerLink="/" />
+            <img class="logo float-left pointer" src="../../../assets/media/logo_03.png" alt="Logo" name="Logo" routerLink="/" />
             <span class="float-right lead login-message" *ngIf="isLoggedIn()">
                 <span class="hide-phone">Welcome <span class="text-light" *ngIf="getUser()">{{getUser().name}}</span>! - </span>
                 <a (click)="logoutSubmit()">logout</a>
@@ -16,7 +16,22 @@
 
     <section class="container">
         <div class="row">
-            <form [formGroup]="postForm" (submit)="loginSubmit()" class="mt-4 col-lg-8 ml-auto mr-auto">
+            <form id="createBlogForm" [formGroup]="postForm" (submit)="createBlogSubmit()" class="mt-4 col-lg-8 ml-auto mr-auto">
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="title">Title</label>
+                        <input class="form-control" id="title" formControlName="title" type="text"
+                               placeholder="Example title" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="body">Example textarea</label>
+                        <textarea class="form-control" id="body" formControlName="body" rows="4"></textarea>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="form-group col-sm-5 col-md-4">
                         <label for="date">Date</label>
@@ -31,22 +46,39 @@
                     <div class="form-group col-sm-5">
                         <label for="location">Location</label>
                         <input class="form-control" id="location" formControlName="location" type="text"
-                               placeholder="e.g. Howest, Bruges"/>
+                               placeholder="e.g. Howest, Bruges" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-sm-4">
                         <label for="tag">Tag</label>
-
                         <div class="position-relative">
-                            <select id="tag" formControlName="tag" title="Filter on tag" class="w-100">
-                                <option value="">None</option>
+                            <select id="tag" formControlName="tag" title="Filter on tag" class="w-100" (click)="showTags()">
+                                <option value="">/</option>
                                 <option [value]="tag.id" *ngFor="let tag of tags">{{tag.name}}</option>
                             </select>
                             <span class="arrow-down"></span>
                             <small class="form-text text-muted text-right">Or add <a class="click" (click)="showNewTag()">new</a>.</small>
                         </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="goal_audience">Goal audience</label>
+                        <input class="form-control" id="goal_audience" formControlName="goal_audience" type="text"
+                               placeholder="e.g. Retards" />
+                    </div>
+                    <div class="form-group col-sm-5">
+                        <label for="wallpaper">Wallpaper</label>
+                        <input #imageInput type="file" class="form-control-file" id="wallpaper" formControlName="wallpaper_buf" accept="image/*" (change)="processFile(imageInput)" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <button [ngClass]="{'login-button-invalid' : (postForm.pristine || postForm.invalid || postForm.pending)}" type="submit" [disabled]="postForm.pristine || postForm.invalid || postForm.pending">
+                            <span *ngIf="!postForm.pending">Add</span>
+                            <span *ngIf="postForm.pending">Pending</span>
+                        </button>
                     </div>
                 </div>
 
@@ -77,4 +109,25 @@
             </form>
         </div>
     </section>
+
+    <div *ngIf="newTagActive" class="login position-fixed fixed-top w-100 h-100 hide-on-init" animateOnScroll animationName="animated fadeIn">
+        <div class="w-100 h-100 bg-darker text-center">
+            <div class="account-popup bg-white d-inline-block">
+                <span class="close" (click)="toggleNewTag()"><i class="fas fa-times"></i></span>
+
+                <h3>New tag</h3>
+
+                <form [formGroup]="newTagForm" (submit)="newTagSubmit()">
+                    <div class="cfield" [ngClass]="{'input-error' : newTagForm.controls.name.errors}">
+                        <input formControlName="name" type="text" placeholder="Tag name">
+                    </div>
+
+                    <button [ngClass]="{'login-button-invalid' : (newTagForm.pristine || newTagForm.invalid || newTagForm.pending)}" type="submit" [disabled]="newTagForm.pristine || newTagForm.invalid || newTagForm.pending">
+                        <span *ngIf="!newTagForm.pending">Add</span>
+                        <span *ngIf="newTagForm.pending">Pending</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>

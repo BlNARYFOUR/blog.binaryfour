@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {AuthService} from "./auth.service";
 
 @Injectable()
 export class BlogService {
@@ -30,6 +31,34 @@ export class BlogService {
 
     getTags() {
         return this._http.get(this.tagsUrl);
+    }
+
+    createBlog(blogInfo: any) {
+        console.log("blogInfo:", blogInfo);
+
+        let formData = new FormData();
+        formData.append('body', blogInfo['body']);
+        formData.append('image', blogInfo["image"]);
+        formData.append('date', blogInfo['date']);
+        formData.append('duration', blogInfo['duration']);
+        formData.append('goal_audience', blogInfo['goal_audience']);
+        formData.append('location', blogInfo['location']);
+        formData.append('tag', blogInfo['tag']);
+        formData.append('title', blogInfo['title']);
+
+        console.log("formData:", formData);
+
+        return this._http.post<any>(this.blogsUrl, formData, {
+            headers: {
+                'Authorization': 'Bearer ' + AuthService.token
+            }
+        });
+    }
+
+    createTag(tagInfo: any) {
+        return this._http.post(this.tagsUrl, tagInfo, {
+            headers: {'Authorization': 'Bearer ' + AuthService.token}
+        });
     }
 
     enablePostAnimation() {
