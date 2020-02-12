@@ -16,6 +16,10 @@ html {
 header {
   background: url('./assets/media/banner.jpg') no-repeat center top;
   background-size: cover;
+
+  .logout-btn {
+    cursor: pointer;
+  }
 }
 
 header > div {
