@@ -42,7 +42,7 @@
             <li class="col-xl-4 col-lg-6 col-md-6 p-3" routerLink="/blog/create" *ngIf="isLoggedIn()">
                 <!--suppress HtmlUnknownAttribute -->
                 <figure class="m-0 height-auto rounded position-relative reveal hide-on-init" animateOnScroll animationName="animated fadeIn">
-                    <img class="img-fluid" src="../../../assets/media/banner_16_9.jpg" alt="Add blog" title="Add blog"/>
+                    <img class="w-100" src="../../../assets/media/banner_16_9.jpg" alt="Add blog" title="Add blog"/>
                     <figcaption class="container bg-darker position-absolute fixed-top h-100 vertical-middle">
                         <h2 class="text-white text-center w-100 m-0 font-size-huge">+</h2>
                     </figcaption>
@@ -51,7 +51,7 @@
             <li class="col-xl-4 col-lg-6 col-md-6 p-3" *ngFor="let blog of blogs | paginate: { id: 'blogs', itemsPerPage: getPageSize(), currentPage: currentPage, totalItems: totalItems }">
                 <!--suppress HtmlUnknownAttribute -->
                 <figure class="m-0 height-auto rounded position-relative reveal hide-on-init" animateOnScroll animationName="animated fadeIn">
-                    <img class="img-fluid" routerLink="/blog/{{blog['id']}}" src="{{apiUrl}}blogs/images/{{blog['id']}}" [alt]="blog['id']" [title]="blog['title']"/>
+                    <img class="w-100" routerLink="/blog/{{blog['id']}}" src="{{apiUrl}}blogs/images/{{blog['id']}}" [alt]="blog['id']" [title]="blog['title']"/>
                     <div class="location-wrapper">
                         <span class="location text position-absolute">{{blog['location']}}</span>
                         <span class="location position-absolute"></span>

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './pages/index/index.component';
 import {HttpClientModule} from "@angular/common/http";
-import { BlogSummaryComponent } from './pages/index/components/blogSummary/blog-summary/blog-summary.component';
+//import { BlogSummaryComponent } from './pages/index/components/blogSummary/blog-summary/blog-summary.component';
 import {AnimateOnScrollModule} from "ng2-animate-on-scroll";
 import { BlogComponent } from './pages/blog/blog.component';
 import {NgxPaginationModule} from "ngx-pagination";
@@ -16,7 +16,7 @@ import { CreateComponent } from './pages/create/create.component';
   declarations: [
     AppComponent,
     IndexComponent,
-    BlogSummaryComponent,
+    //BlogSummaryComponent,
     BlogComponent,
     CreateComponent
   ],
